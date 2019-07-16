@@ -6,7 +6,7 @@ import { PushSpinner } from "react-spinners-kit";
 import Card from "../../common/Card";
 import "./Question.css";
 
-import { WorkTable } from "../CareerPath/Table";
+import { WorkTable } from "../../common/Table";
 
 let regex = /[A-Z]/g;
 

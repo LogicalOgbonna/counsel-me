@@ -1,25 +1,31 @@
 import {
-  QUESTION_UPLOAD,
-  CAREER_UPLOAD,
-  UPLOAD_ERRRORS
+  VIEW_COURSE,
+  COURSE_UPLOAD,
+  UPLOAD_ERRRORS,
+  ALL_USERS
 } from "../actions/types";
 
 const uploads = (state = {}, action = {}) => {
   switch (action.type) {
-    case QUESTION_UPLOAD:
+    case VIEW_COURSE:
       return {
         ...state,
-        questions: action.questions
+        course: action.course
       };
-    case CAREER_UPLOAD:
+    case COURSE_UPLOAD:
       return {
         ...state,
-        careers: action.careers
+        courses: action.courses
       };
     case UPLOAD_ERRRORS:
       return {
         ...state,
         error: action.error
+      };
+    case ALL_USERS:
+      return {
+        ...state,
+        users: action.users
       };
     default:
       return state;

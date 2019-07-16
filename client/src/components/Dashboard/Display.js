@@ -11,7 +11,9 @@ export default function Display({ admin }) {
             <div className="row">
               <div className="col-lg-6 offset-3 banner-text-w3pvt">
                 <h4 className="b-w3ltxt text-capitalize text-center">
-                  {admin ? "Manage Questions and Careeres" : "Know Who You Are"}
+                  {admin
+                    ? "Manage Courses and Users"
+                    : "Know Today What You Will Study"}
                 </h4>
               </div>
             </div>

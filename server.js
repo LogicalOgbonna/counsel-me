@@ -13,7 +13,7 @@ dotenv.config();
 const questionsRouter = require("./routes/api/question");
 const usersRouter = require("./routes/api/users");
 const profileRouter = require("./routes/api/profile");
-const careerRouter = require("./routes/api/career");
+const courseRouter = require("./routes/api/course");
 
 const app = express();
 
@@ -24,7 +24,7 @@ app.use(bodyParser.json());
 // connect to db
 // console.log(process.env.MongoDbURIOnline);
 mongoose
-  .connect(process.env.MongoDbURIOnline, {
+  .connect(process.env.MongoDbURI, {
     useNewUrlParser: true
   })
   .then(console.log("DB connected successfully"))
@@ -44,7 +44,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use("/api/question", questionsRouter);
 app.use("/api/users", usersRouter);
 app.use("/api/profile", profileRouter);
-app.use("/api/career", careerRouter);
+app.use("/api/course", courseRouter);
 
 // Server static assets if in production
 if (process.env.NODE_ENV === "production") {

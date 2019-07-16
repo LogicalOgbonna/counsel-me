@@ -3,10 +3,10 @@ const Schema = mongoose.Schema;
 
 // Create Schema
 const CareerSchema = new Schema({
-  career: {
+  course: {
     type: Array,
     required: true
   }
 });
 
-module.exports = Career = mongoose.model("career", CareerSchema);
+module.exports = Course = mongoose.model("course", CareerSchema);

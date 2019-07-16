@@ -36,21 +36,28 @@ const Nav = ({ active, user, logout }) => {
 
               <li className="nav-item px-2">
                 <Link
-                  to="/upload-personality"
-                  className={`nav-link ${
-                    active === "personality" ? "active" : ""
-                  }`}
+                  to="/upload-course"
+                  className={`nav-link ${active === "course" ? "active" : ""}`}
                 >
-                  Upload Personality Test
+                  Upload Courses
                 </Link>
               </li>
 
               <li className="nav-item px-2">
                 <Link
-                  to="/upload-career"
-                  className={`nav-link ${active === "career" ? "active" : ""}`}
+                  to="/view-courses"
+                  className={`nav-link ${active === "view" ? "active" : ""}`}
                 >
-                  Upload Careers
+                  View Courses
+                </Link>
+              </li>
+
+              <li className="nav-item px-2">
+                <Link
+                  to="/view-users"
+                  className={`nav-link ${active === "users" ? "active" : ""}`}
+                >
+                  View Users
                 </Link>
               </li>
             </ul>

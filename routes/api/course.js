@@ -3,7 +3,7 @@ const router = express.Router();
 const passport = require("passport");
 
 const Profile = require("../../model/Profile");
-const Career = require("../../model/Careers");
+const Course = require("../../model/Course");
 
 // @route   GET api/career
 // @desc    Get current users career
@@ -12,7 +12,16 @@ router.get(
   "/",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    Profile.findOne({ user: req.user.id }).then(profile => {
+    if (req.user.admin) {
+      return Course.find({}).then(course => res.json(course));
+    } else {
+      return res.status(401).json("Unauthorized");
+    }
+  }
+);
+
+/* 
+Profile.findOne({ user: req.user.id }).then(profile => {
       // res.json(profile);
       if (profile) {
         const credential = profile.credential;
@@ -213,7 +222,13 @@ router.get(
           if (scienceDepartment.length || subjectsPassed.length) {
             return res.json({
               message: "List of possible Course you can study",
-              data:[ scienceDepartment[0], scienceDepartment[1], scienceDepartment[2], scienceDepartment[3], scienceDepartment[4]],
+              data: [
+                scienceDepartment[0],
+                scienceDepartment[1],
+                scienceDepartment[2],
+                scienceDepartment[3],
+                scienceDepartment[4]
+              ],
               subjectsPassed
             });
           } else {
@@ -394,34 +409,33 @@ router.get(
         }
       }
     });
-  }
-);
+*/
 
 // @route   Post api/career/code/:riasec_code
 // @desc    Get a user's Career
 // @access  Private
-router.get(
-  "/code/:riasec",
-  passport.authenticate("jwt", { session: false }),
-  (req, res) => {
-    const code = req.params.riasec;
-    const careers = [];
-    if (code) {
-      Career.find({}).then(career => {
-        const test = career[0].career;
+// router.get(
+//   "/code/:riasec",
+//   passport.authenticate("jwt", { session: false }),
+//   (req, res) => {
+//     const code = req.params.riasec;
+//     const careers = [];
+//     if (code) {
+//       Career.find({}).then(career => {
+//         const test = career[0].career;
 
-        for (let i = 0; i < test.length; i++) {
-          if (test[i].code === code) {
-            careers.push(test[i]);
-          }
-        }
-        res.json(careers);
-      });
-    } else {
-      res.status(400).json("NO params");
-    }
-  }
-);
+//         for (let i = 0; i < test.length; i++) {
+//           if (test[i].code === code) {
+//             careers.push(test[i]);
+//           }
+//         }
+//         res.json(careers);
+//       });
+//     } else {
+//       res.status(400).json("NO params");
+//     }
+//   }
+// );
 
 // @route   Post api/career
 // @desc    Post All users Career
@@ -433,7 +447,7 @@ router.post(
   (req, res) => {
     if (req.user.admin) {
       if (req.body) {
-        return new Career(req.body)
+        return new Course(req.body)
           .save()
           .then(ca => res.json(ca))
           .catch(err => res.status(400).json(err));

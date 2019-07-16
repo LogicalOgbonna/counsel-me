@@ -124,3 +124,86 @@ export function WorkTable({ data, notRiasec, name }) {
     </React.Fragment>
   );
 }
+
+export function GenericTable({ data, name, type }) {
+  const coursesTable = (
+    <React.Fragment>
+      <h3 className="text-muted text-center">{name}</h3>
+      <table className="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Code</th>
+          </tr>
+        </thead>
+        <tbody>
+          {data.length ? (
+            data.map((data, index) => {
+              return (
+                <tr key={index}>
+                  <th scope="row">{index + 1}</th>
+                  <td className="text-capitalize">{data.name}</td>
+                  <td className="text-capitalize">{data.code}</td>
+                </tr>
+              );
+            })
+          ) : (
+            <tr>
+              <th scope="row" />
+              <td>No Data</td>
+              <td>No Data</td>
+            </tr>
+          )}
+        </tbody>
+      </table>
+    </React.Fragment>
+  );
+
+  const userTable = (
+    <React.Fragment>
+      <h3 className="text-muted text-center">{name}</h3>
+      <table className="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Role</th>
+          </tr>
+        </thead>
+        <tbody>
+          {data.length ? (
+            data.map((data, index) => {
+              return (
+                <tr key={index}>
+                  <th scope="row">{index + 1}</th>
+                  <td className="text-capitalize">{data.name}</td>
+                  <td className="">{data.email}</td>
+                  <td className="text-capitalize">
+                    {data.admin ? "Admin" : "User"}
+                  </td>
+                </tr>
+              );
+            })
+          ) : (
+            <tr>
+              <th scope="row" />
+              <td>No Data</td>
+              <td>No Data</td>
+              <td>No Data</td>
+            </tr>
+          )}
+        </tbody>
+      </table>
+    </React.Fragment>
+  );
+  switch (type) {
+    case "courses":
+      return coursesTable;
+    case "user":
+      return userTable;
+    default:
+      return "";
+  }
+}

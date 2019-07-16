@@ -1,14 +1,14 @@
 import axios from "axios";
-import { QUESTION_UPLOAD, CAREER_UPLOAD, UPLOAD_ERRRORS } from "./types";
+import { VIEW_COURSE, COURSE_UPLOAD, UPLOAD_ERRRORS, ALL_USERS } from "./types";
 
-export const questionUploaded = questions => ({
-  type: QUESTION_UPLOAD,
-  questions
+export const allCourses = course => ({
+  type: VIEW_COURSE,
+  course
 });
 
-export const careersUploaded = careers => ({
-  type: CAREER_UPLOAD,
-  careers
+export const coursesUploaded = courses => ({
+  type: COURSE_UPLOAD,
+  courses
 });
 
 export const errors = error => ({
@@ -16,20 +16,40 @@ export const errors = error => ({
   error
 });
 
-export const uploadQuestions = data => dispatch => {
+export const allUsers = users => ({
+  type: ALL_USERS,
+  users
+});
+
+export const viewCourses = () => dispatch => {
   axios
-    .post("/api/question", data)
-    .then(question => {
-      dispatch(questionUploaded(question.data.data));
+    .get("/api/course")
+    .then(course => {
+      const courses = [];
+      for (let i = 0; i < course.data.length; i++) {
+        for (let j = 0; j < course.data[i].course.length; j++) {
+          courses.push({
+            code: course.data[i].course[j].code,
+            name: course.data[i].course[j].name
+          });
+        }
+      }
+      dispatch(allCourses(courses));
     })
     .catch(err => dispatch(errors(err)));
 };
 
-export const uploadCareers = data => dispatch => {
+export const uploadCourses = data => dispatch => {
   axios
-    .post("/api/career", data)
-    .then(careers => {
-      dispatch(careersUploaded(careers.data.career));
+    .post("/api/course", data)
+    .then(courses => {
+      dispatch(coursesUploaded(courses.data.course));
     })
     .catch(err => dispatch(errors(err)));
+};
+
+export const viewUsers = () => dispatch => {
+  axios.get("/api/users/all").then(user => {
+    dispatch(allUsers(user.data));
+  });
 };

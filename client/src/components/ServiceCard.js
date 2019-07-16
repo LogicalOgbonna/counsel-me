@@ -104,15 +104,15 @@ export default function ServiceCard({ dashboard, admin }) {
       ) : (
         <div>
           <div className="row ml-sm-5 mt-5">
-            <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+            <div className="col-xl-4 col-lg-4 col-md-4 col-sm-12">
               <div className="our-services-wrapper mb-60">
                 <div className="services-inner">
                   <div className="our-services-img">
                     <img src="images/s3.png" alt="" />
                   </div>
                   <div className="our-services-text">
-                    <h4>Upload Test</h4>
-                    <p>Upload Personality Test Questions</p>
+                    <h4>Upload Courses</h4>
+                    <p>Upload Courses Offered</p>
                   </div>
                 </div>
 
@@ -120,7 +120,7 @@ export default function ServiceCard({ dashboard, admin }) {
                   style={{
                     marginLeft: "35%"
                   }}
-                  to="/upload-personality"
+                  to="/upload-course"
                   className="btn btn-banner my-3"
                 >
                   Proceed
@@ -128,15 +128,15 @@ export default function ServiceCard({ dashboard, admin }) {
               </div>
             </div>
 
-            <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+            <div className="col-xl-4 col-lg-4 col-md-4 col-sm-12">
               <div className="our-services-wrapper mb-60">
                 <div className="services-inner">
                   <div className="our-services-img">
                     <img src="images/s3.png" alt="" />
                   </div>
                   <div className="our-services-text">
-                    <h4>Upload Career</h4>
-                    <p>Upload Career and their Codes</p>
+                    <h4>View Courses</h4>
+                    <p>View Uploaded Courses</p>
                   </div>
                 </div>
 
@@ -144,7 +144,31 @@ export default function ServiceCard({ dashboard, admin }) {
                   style={{
                     marginLeft: "35%"
                   }}
-                  to="/upload-career"
+                  to="/view-courses"
+                  className="btn btn-banner my-3"
+                >
+                  Proceed
+                </Link>
+              </div>
+            </div>
+
+            <div className="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+              <div className="our-services-wrapper mb-60">
+                <div className="services-inner">
+                  <div className="our-services-img">
+                    <img src="images/s3.png" alt="" />
+                  </div>
+                  <div className="our-services-text">
+                    <h4>View Users</h4>
+                    <p>View Registerd Users</p>
+                  </div>
+                </div>
+
+                <Link
+                  style={{
+                    marginLeft: "35%"
+                  }}
+                  to="/view-users"
                   className="btn btn-banner my-3"
                 >
                   Proceed

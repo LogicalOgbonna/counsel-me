@@ -3,82 +3,59 @@ import readXlsxFile from "read-excel-file";
 import propType from "prop-types";
 import { connect } from "react-redux";
 
-import { uploadQuestions } from "../../actions/upload";
+import { uploadCourses } from "../../actions/upload";
 
 import Nav from "../Nav";
 import Footer from "../Footer";
 
-class UploadPersonalityTest extends Component {
+class UploadCourse extends Component {
   state = {
-    questions: [],
-    questionAdded: false
+    courses: {},
+    coursesAdded: false,
+    loading: false
   };
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.question) {
-      this.setState({ questionAdded: nextProps.question, loading: false });
+    if (nextProps.course) {
+      this.setState({ coursesAdded: nextProps.course, loading: false });
     }
   }
   onChange = e => {
     const file = e.target.files[0];
-    let questions = [];
+    let courses = {};
+    courses.course = [];
     readXlsxFile(file).then(row => {
       for (let i = 1; i < row.length; i++) {
-        questions = [
-          ...questions,
-          {
-            question: row[i][0],
-            type: row[i][1],
-            question_option: [
-              {
-                option_value: "disagree",
-                weight: -2
-              },
-              {
-                option_value: "slightlyDisagree",
-                weight: -1
-              },
-              {
-                option_value: "neutral",
-                weight: 0
-              },
-              {
-                option_value: "slightlyAgree",
-                weight: 1
-              },
-              {
-                option_value: "agree",
-                weight: 2
-              }
-            ]
-          }
-        ];
+        courses.course.push({
+          code: row[i][0],
+          name: row[i][1]
+        });
       }
-      this.setState({ questions });
+      this.setState({ courses });
     });
   };
   onSubmit = e => {
     e.preventDefault();
-    if (this.state.questions.length > 0) {
+    if (Object.keys(this.state.courses).length > 0) {
       this.setState({ loading: true });
-      this.props.uploadQuestions(this.state.questions);
+      this.props.uploadCourses(this.state.courses);
     }
   };
 
   clearAddedQuestion = () => {
-    setTimeout(this.setState({ questionAdded: false }), 1000);
+    setTimeout(this.setState({ coursesAdded: false }), 1000);
   };
   render() {
     return (
       <React.Fragment>
-        <Nav active="personality" />
+        <Nav active="course" />
         <div className="container">
           <form
             onSubmit={this.onSubmit}
             style={{ marginTop: "10%", marginBottom: "10%" }}
             className=""
           >
-            {this.state.questionAdded && (
+            {this.state.coursesAdded && (
               <div className="row">
                 <div className="col-md-6 offset-3">
                   <div className="alert alert-success alert-dismissible">
@@ -90,14 +67,14 @@ class UploadPersonalityTest extends Component {
                     >
                       &times;
                     </a>
-                    <strong>Success!</strong> Questions Uploaded Successfully.
+                    <strong>Success!</strong> Courses Uploaded Successfully.
                   </div>
                 </div>
               </div>
             )}
             <div className="row">
               <div className="col-sm-4 offset-4 ">
-                <h5 className="mb-3 text-center">Upload Test Questions</h5>
+                <h5 className="mb-3 text-center">Upload Courses</h5>
                 <div className="input-group mb-3">
                   <input
                     type="file"
@@ -135,14 +112,14 @@ class UploadPersonalityTest extends Component {
 }
 
 const mapStateToProps = state => ({
-  question: !!state.uploads.questions
+  course: !!state.uploads.courses
 });
-UploadPersonalityTest.propType = {
-  uploadQuestions: propType.func.isRequired,
-  question: propType.bool
+UploadCourse.propType = {
+  uploadCourses: propType.func.isRequired,
+  course: propType.bool
 };
 
 export default connect(
   mapStateToProps,
-  { uploadQuestions }
-)(UploadPersonalityTest);
+  { uploadCourses }
+)(UploadCourse);

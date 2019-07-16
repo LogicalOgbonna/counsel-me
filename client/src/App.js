@@ -9,8 +9,9 @@ import Personality from "./components/Personality/Personality";
 import Career from "./components/CareerPath/CareerPath";
 import UserRoute from "./routes/UserRoute";
 import Test from "./components/Personality/Test";
-import UploadPersonalityTest from "./components/UploadPersonalityTest/UploadPersonalityTest";
-import UploadCareer from "./components/UploadCareer/UploadCareer";
+import ViewCourses from "./components/ViewCourses/ViewCourses";
+import UploadCourse from "./components/UploadCourse/UploadCourse";
+import ViewUsers from "./components/ViewUsers/ViewUsers";
 
 class App extends Component {
   render() {
@@ -51,18 +52,26 @@ class App extends Component {
         />
 
         <UserRoute
-          path="/upload-personality"
+          path="/view-courses"
           exact
-          name="Upload Personality Test"
-          component={UploadPersonalityTest}
+          name="View Uploaded Courses"
+          component={ViewCourses}
           isAuthenticated={isAuthenticated}
         />
 
         <UserRoute
-          path="/upload-career"
+          path="/view-users"
           exact
-          name="Upload Career"
-          component={UploadCareer}
+          name="View Register Users"
+          component={ViewUsers}
+          isAuthenticated={isAuthenticated}
+        />
+
+        <UserRoute
+          path="/upload-course"
+          exact
+          name="Upload Course"
+          component={UploadCourse}
           isAuthenticated={isAuthenticated}
         />
       </Switch>
