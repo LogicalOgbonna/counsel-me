@@ -9,7 +9,7 @@ export function ResultTable({ subjects, name, withGrade }) {
           {withGrade ? (
             <tr>
               <th scope="col">#</th>
-              <th scope="col">Subject</th>
+              <th scope="col">Course Code</th>
               <th scope="col">Grade</th>
             </tr>
           ) : (
@@ -24,10 +24,8 @@ export function ResultTable({ subjects, name, withGrade }) {
             subjects.map((data, index) => {
               if (withGrade)
                 return (
-                  <tr>
-                    <th key={index} scope="row">
-                      {index + 1}
-                    </th>
+                  <tr key={index}>
+                    <th scope="row">{index + 1}</th>
                     <td>{data.name}</td>
                     <td>{data.grade.toUpperCase()}</td>
                   </tr>
@@ -61,66 +59,46 @@ export function ResultTable({ subjects, name, withGrade }) {
 export function WorkTable({ data, notRiasec, name }) {
   return (
     <React.Fragment>
-      <h3 className="text-muted text-center">{name}</h3>
+      <h3 className="text-muted text-center">
+        {" "}
+        <span className="text-bold">Area: </span>
+        {data.area}
+      </h3>
       {/* </label> */}
       <table className="table table-bordered">
         <thead>
-          {notRiasec ? (
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Course</th>
-              <th scope="col">Faculty</th>
-              <th scope="col">Description</th>
-            </tr>
-          ) : (
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Job</th>
-              <th scope="col">Code</th>
-            </tr>
-          )}
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Course</th>
+            <th scope="col">Code</th>
+            {/* <th scope="col">Definition</th> */}
+          </tr>
         </thead>
         <tbody>
-          {data.length ? (
-            data.map((data, index) => {
-              if (notRiasec)
-                return (
-                  <tr>
-                    <th key={index} scope="row">
-                      {index + 1}
-                    </th>
-                    <td className="text-capitalize">{data.name}</td>
-                    <td className="text-capitalize">{data.faculty}</td>
-                    <td>{data.description}</td>
-                  </tr>
-                );
-              else
-                return (
-                  <tr>
-                    <th key={index} scope="row">
-                      {index + 1}
-                    </th>
-                    <td className="text-capitalize">{data.name}</td>
-                    <td className="text-capitalize">{data.code}</td>
-                  </tr>
-                );
-            })
-          ) : notRiasec ? (
-            <tr>
-              <th scope="row">No Data</th>
-              <td>No Data</td>
-              <td>No Data</td>
-              <td>No Data</td>
-            </tr>
-          ) : (
-            <tr>
-              <th scope="row">No Data</th>
-              <td>No Data</td>
-              <td>No Data</td>
-            </tr>
-          )}
+          {data.course &&
+            data.course.length &&
+            data.course.map((res, index) => (
+              <tr key={index}>
+                <th scope="row">{index + 1}</th>
+                <td className="text-capitalize">{res.name}</td>
+                <td className="text-capitalize">{res.code}</td>
+              </tr>
+            ))}
+          {/* <td>{data.definition}</td> */}
+          {/* // : (
+          //   <tr>
+          //     <th scope="row">No Data</th>
+          //     <td>No Data</td>
+          //     <td>No Data</td>
+          //     <td>No Data</td>
+          //   </tr>
+          // ) */}
         </tbody>
       </table>
+      <h3 className="text-muted text-center">
+        <span className="text-bold">Definition: </span>
+        {data.definition}
+      </h3>
     </React.Fragment>
   );
 }

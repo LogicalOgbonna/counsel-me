@@ -10,10 +10,9 @@ const dotenv = require("dotenv");
 
 dotenv.config();
 
-const questionsRouter = require("./routes/api/question");
 const usersRouter = require("./routes/api/users");
-const profileRouter = require("./routes/api/profile");
 const courseRouter = require("./routes/api/course");
+const sepcializationRouter = require("./routes/api/specialization");
 
 const app = express();
 
@@ -41,10 +40,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 // app.use("/", indexRouter);
-app.use("/api/question", questionsRouter);
 app.use("/api/users", usersRouter);
-app.use("/api/profile", profileRouter);
 app.use("/api/course", courseRouter);
+app.use("/api/specialization", sepcializationRouter);
 
 // Server static assets if in production
 if (process.env.NODE_ENV === "production") {

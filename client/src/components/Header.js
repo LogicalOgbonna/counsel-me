@@ -46,10 +46,7 @@ const Header = ({ isAuthenticated, user, logout }) => {
               <Link to="/">Home</Link>
             </li>
 
-            <li className="">
-              <a href="#services">Services</a>
-            </li>
-            {!isAuthenticated && (
+            {/* {!isAuthenticated && (
               <li className="">
                 <Link to="#login">Login</Link>
               </li>
@@ -94,7 +91,7 @@ const Header = ({ isAuthenticated, user, logout }) => {
                   </div>
                 </li>
               </span>
-            )}
+            )} */}
           </ul>
         </nav>
       </div>

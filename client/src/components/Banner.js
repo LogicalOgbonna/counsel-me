@@ -4,11 +4,8 @@ import propTypes from "prop-types";
 import { connect } from "react-redux";
 
 import { login, register } from "../actions/auth";
-import RegisterForm from "../common/RegisterForm";
+// import RegisterForm from "../common/RegisterForm";
 import "./Banner.css";
-import Slider from "./Slider";
-// import Card from "../common/Card";
-// import history from "../utils/history";
 
 class Banner extends React.Component {
   state = {
@@ -90,12 +87,10 @@ class Banner extends React.Component {
         <div className="layer">
           <div className="container">
             <div className="row">
-              <div className="col-lg-7 banner-text-w3pvt">
-                <Slider />
-              </div>
+              <div className="col-lg-7 banner-text-w3pvt" />
               <div className="col-lg-5 col-md-8 px-lg-3 px-0">
                 <div className="banner-form-w3 ml-lg-5">
-                  {!this.props.isAuthenticated ? (
+                  {/* {!this.props.isAuthenticated ? (
                     <div className="padding">
                       <RegisterForm
                         loading={this.state.loading}
@@ -111,8 +106,8 @@ class Banner extends React.Component {
                       />
                     </div>
                   ) : (
-                    <div className="">{/* <Card /> */}</div>
-                  )}
+                    <div className=""></div>
+                  )} */}
                 </div>
               </div>
             </div>

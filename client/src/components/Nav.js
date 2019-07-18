@@ -39,7 +39,7 @@ const Nav = ({ active, user, logout }) => {
                   to="/upload-course"
                   className={`nav-link ${active === "course" ? "active" : ""}`}
                 >
-                  Upload Courses
+                  Upload
                 </Link>
               </li>
 
@@ -63,7 +63,7 @@ const Nav = ({ active, user, logout }) => {
             </ul>
           ) : (
             <ul className="navbar-nav">
-              <li className="nav-item px-2">
+              {/* <li className="nav-item px-2">
                 <Link
                   to="/dashboard"
                   className={`nav-link ${
@@ -72,18 +72,7 @@ const Nav = ({ active, user, logout }) => {
                 >
                   Dashboard
                 </Link>
-              </li>
-
-              <li className="nav-item px-2">
-                <Link
-                  to="/personality"
-                  className={`nav-link ${
-                    active === "personality" ? "active" : ""
-                  }`}
-                >
-                  personality Test
-                </Link>
-              </li>
+              </li> */}
 
               <li className="nav-item px-2">
                 <Link
@@ -96,7 +85,7 @@ const Nav = ({ active, user, logout }) => {
             </ul>
           )}
 
-          <ul className="navbar-nav ml-auto">
+          {/* <ul className="navbar-nav ml-auto">
             <li className="nav-item dropdown mr-3">
               <a
                 href="#"
@@ -130,10 +119,7 @@ const Nav = ({ active, user, logout }) => {
                 </Link>
               </div>
             </li>
-            {/* <li className="nav-item">
-              
-            </li> */}
-          </ul>
+          </ul> */}
         </div>
       </div>
     </nav>

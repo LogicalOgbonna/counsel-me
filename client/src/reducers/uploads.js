@@ -2,7 +2,8 @@ import {
   VIEW_COURSE,
   COURSE_UPLOAD,
   UPLOAD_ERRRORS,
-  ALL_USERS
+  ALL_USERS,
+  AREA_OF_SPECIALIZATION
 } from "../actions/types";
 
 const uploads = (state = {}, action = {}) => {
@@ -27,6 +28,11 @@ const uploads = (state = {}, action = {}) => {
         ...state,
         users: action.users
       };
+    case AREA_OF_SPECIALIZATION: 
+    return {
+      ...state,
+      career: action.area
+    }
     default:
       return state;
   }

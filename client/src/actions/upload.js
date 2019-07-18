@@ -1,5 +1,11 @@
 import axios from "axios";
-import { VIEW_COURSE, COURSE_UPLOAD, UPLOAD_ERRRORS, ALL_USERS } from "./types";
+import {
+  VIEW_COURSE,
+  COURSE_UPLOAD,
+  UPLOAD_ERRRORS,
+  ALL_USERS,
+  AREA_OF_SPECIALIZATION
+} from "./types";
 
 export const allCourses = course => ({
   type: VIEW_COURSE,
@@ -19,6 +25,11 @@ export const errors = error => ({
 export const allUsers = users => ({
   type: ALL_USERS,
   users
+});
+
+export const areaOfSpecialization = area => ({
+  type: AREA_OF_SPECIALIZATION,
+  area
 });
 
 export const viewCourses = () => dispatch => {
@@ -51,5 +62,11 @@ export const uploadCourses = data => dispatch => {
 export const viewUsers = () => dispatch => {
   axios.get("/api/users/all").then(user => {
     dispatch(allUsers(user.data));
+  });
+};
+
+export const uploadGrade = data => dispatch => {
+  axios.post("/api/course/career", data).then(res => {
+    dispatch(areaOfSpecialization(res.data));
   });
 };
