@@ -10,6 +10,7 @@ import setAuthorizationHeader from "./utils/setAuthorizationHeader";
 import history from "./utils/history";
 import { userLoggedIn } from "./actions/auth";
 // import { getTest } from "./actions/test";
+import "./index.css";
 
 import store from "./store";
 

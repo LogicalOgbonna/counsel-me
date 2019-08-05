@@ -10,6 +10,7 @@ import UserRoute from "./routes/UserRoute";
 import ViewCourses from "./components/ViewCourses/ViewCourses";
 import UploadCourse from "./components/UploadCourse/UploadCourse";
 import ViewUsers from "./components/ViewUsers/ViewUsers";
+import { Login, Register } from "./components/Auth/index";
 
 class App extends Component {
   render() {
@@ -17,7 +18,8 @@ class App extends Component {
     return (
       <Switch>
         <Route path="/" exact name="Home" component={Landing} />
-        <Route path="/login" exact name="Home" component={Landing} />
+        <Route path="/login" exact name="Login" component={Login} />
+        <Route path="/register" exact name="Register" component={Register} />
         <UserRoute
           path="/dashboard"
           exact

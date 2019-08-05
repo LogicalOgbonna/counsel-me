@@ -8,94 +8,56 @@ import logo from "./images/s2.png";
 import { Link } from "react-router-dom";
 import { logout } from "../actions/auth";
 
-const Header = ({ isAuthenticated, user, logout }) => {
+const Header = ({ isAuthenticated, user, logout, active }) => {
   return (
-    <header>
-      <div className="top-head container">
-        <div className="ml-auto text-right right-p">
-          <ul>
-            <li className="mr-3">
-              <span className="fa fa-clock-o" /> Mon-Sun : 8:00 AM to 8:00 AM
+    <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
+      <div className="container">
+        <Link to="/" className="navbar-brand">
+          CENM
+        </Link>
+        <button
+          className="navbar-toggler"
+          data-toggle="collapse"
+          data-target="#navbarCollapse"
+        >
+          <span className="navbar-toggler-icon" />
+        </button>
+        <div className="collapse navbar-collapse" id="navbarCollapse">
+          <ul className="navbar-nav ml-auto">
+            <li className={`nav-item ${active === "home" && "active"} `}>
+              <Link to="/" className="nav-link">
+                Home
+              </Link>
             </li>
-            <li>
-              <span className="fa fa-envelope-open" />{" "}
-              <Link to="mailto:info@careeradvice.com">
-                info@carreeradvice.com
-              </Link>{" "}
+            <li className={`nav-item ${active === "about" && "active"} `}>
+              <Link to="/about" className="nav-link">
+                About Us
+              </Link>
+            </li>
+            <li className={`nav-item ${active === "services" && "active"} `}>
+              <Link to="/services" className="nav-link">
+                Services
+              </Link>
+            </li>
+            <li className={`nav-item ${active === "contact" && "active"} `}>
+              <Link to="/contact" className="nav-link">
+                Contact
+              </Link>
+            </li>
+            <li className={`nav-item ${active === "register" && "active"} `}>
+              <Link to="/register" className="nav-link">
+                Sign up
+              </Link>
+            </li>
+            <li className={`nav-item ${active === "login" && "active"} `}>
+              <Link to="/login" className="nav-link">
+                Sign in
+              </Link>
             </li>
           </ul>
         </div>
       </div>
-      <div className="container">
-        <nav className="py-3 d-lg-flex">
-          <div id="logo">
-            <h1>
-              {" "}
-              <Link to="/">
-                <img src={logo} alt="" />
-                CAS{" "}
-              </Link>
-            </h1>
-          </div>
-          <label htmlFor="drop" className="toggle">
-            <span className="fa fa-bars" />
-          </label>
-          <input type="checkbox" id="drop" />
-          <ul className="menu ml-auto mt-1">
-            <li className="active">
-              <Link to="/">Home</Link>
-            </li>
-
-            {/* {!isAuthenticated && (
-              <li className="">
-                <Link to="#login">Login</Link>
-              </li>
-            )}
-
-            {isAuthenticated && (
-              <span className="">
-                <li className="">
-                  <Link to="/dashboard">Dashboard</Link>
-                </li>
-                <li className="nav-item dropdown mr-3">
-                  <a
-                    href="#"
-                    className="nav-link dropdown-toggle"
-                    data-toggle="dropdown"
-                  >
-                    <img
-                      className="rounded-circle"
-                      style={{ width: "20px", marginRight: "5px" }}
-                      src={user.avatar}
-                      alt="user"
-                      title="You must have a Gravatar connected to your email to display your image "
-                    />{" "}
-                    {`Welcome ${user.name}`}
-                  </a>
-                  <div className="dropdown-menu">
-                    <Link to="/profile" className="dropdown-item">
-                      <i className="fas fa-user-circle" /> Profile
-                    </Link>
-
-                    <Link to="/settings" className="dropdown-item">
-                      <i className="fas fa-cog" /> Settings
-                    </Link>
-
-                    <Link
-                      onClick={() => logout()}
-                      to="/login"
-                      className="dropdown-item"
-                    >
-                      <i className="fas fa-user-times" /> Logout
-                    </Link>
-                  </div>
-                </li>
-              </span>
-            )} */}
-          </ul>
-        </nav>
-      </div>
-    </header>
+    </nav>
   );
 };
 

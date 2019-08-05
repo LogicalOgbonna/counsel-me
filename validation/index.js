@@ -5,14 +5,14 @@ module.exports = {
   login: function(data) {
     const errors = {};
     data.password = data.password === undefined ? "" : data.password;
-    data.email = data.email === undefined ? "" : data.email;
+    data.regNo = data.regNo === undefined ? "" : data.regNo;
 
-    if (!Validator.isEmail(data.email)) {
-      errors.email = "Email is invalid";
-    }
+    // if (!Validator.isEmail(data.email)) {
+    //   errors.email = "Email is invalid";
+    // }
 
-    if (Validator.isEmpty(data.email)) {
-      errors.email = "Email field is required";
+    if (Validator.isEmpty(data.regNo)) {
+      errors.regNo = "Registration number field is required";
     }
 
     if (Validator.isEmpty(data.password)) {
@@ -27,27 +27,27 @@ module.exports = {
   register: function(data) {
     let errors = {};
 
-    data.name = data.name === undefined ? "" : data.name;
-    data.email = data.email === undefined ? "" : data.email;
+    data.regNo = data.regNo === undefined ? "" : data.regNo;
+    // data.email = data.email === undefined ? "" : data.email;
     data.password = data.password === undefined ? "" : data.password;
     data.confirm_password =
       data.confirm_password === undefined ? "" : data.confirm_password;
 
-    if (!Validator.isLength(data.name, { min: 2, max: 30 })) {
-      errors.name = "Name must be between 2 and 30 characters";
+    if (!Validator.isLength(data.regNo, { min: 9, max: 11 })) {
+      errors.regNo = "Registration Number must 10 digits";
     }
 
-    if (Validator.isEmpty(data.name)) {
-      errors.name = "Name field is required";
+    if (Validator.isEmpty(data.regNo)) {
+      errors.regNo = "Registration number field is required";
     }
 
-    if (Validator.isEmpty(data.email)) {
-      errors.email = "Email field is required";
-    }
+    // if (Validator.isEmpty(data.email)) {
+    //   errors.email = "Email field is required";
+    // }
 
-    if (!Validator.isEmail(data.email)) {
-      errors.email = "Email is invalid";
-    }
+    // if (!Validator.isEmail(data.email)) {
+    //   errors.email = "Email is invalid";
+    // }
 
     if (Validator.isEmpty(data.password)) {
       errors.password = "Password field is required";

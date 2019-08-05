@@ -3,11 +3,7 @@ const Schema = mongoose.Schema;
 
 // Create Schema
 const UserSchema = new Schema({
-  name: {
-    type: String,
-    required: true
-  },
-  email: {
+  regNo: {
     type: String,
     required: true
   },
@@ -18,14 +14,10 @@ const UserSchema = new Schema({
   avatar: {
     type: String
   },
-  date: {
-    type: Date,
-    default: Date.now
-  },
   admin: {
     type: Boolean,
     default: false
   }
-});
+}, {timestamps: true});
 
 module.exports = User = mongoose.model("users", UserSchema);

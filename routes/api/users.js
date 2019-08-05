@@ -26,20 +26,19 @@ router.post("/register", (req, res) => {
     return res.status(400).json(errors);
   }
 
-  User.findOne({ email: req.body.email }).then(user => {
+  User.findOne({ regNo: req.body.regNo }).then(user => {
     if (user) {
-      errors.email = "Email already exists";
+      errors.regNo = "User with " + req.body.regNo + " already exists";
       return res.status(400).json(errors);
     } else {
-      const avatar = gravatar.url(req.body.email, {
+      const avatar = gravatar.url(req.body.regNo, {
         s: "200", // Size
         r: "pg", // Rating
         d: "mm" // Default
       });
       const admin = req.body.admin ? req.body.admin : false;
       const newUser = new User({
-        name: req.body.name,
-        email: req.body.email,
+        regNo: req.body.regNo,
         avatar,
         password: req.body.password,
         admin
@@ -54,8 +53,7 @@ router.post("/register", (req, res) => {
             .then(user => {
               const payload = {
                 id: user.id,
-                email: user.email,
-                name: user.name,
+                regNo: user.regNo,
                 avatar: user.avatar,
                 admin
               };
@@ -84,14 +82,14 @@ router.post("/login", (req, res) => {
     return res.status(400).json(errors);
   }
 
-  const email = req.body.email;
+  const regNo = req.body.regNo;
   const password = req.body.password;
 
-  // Find user by email
-  User.findOne({ email }).then(user => {
+  // Find user by regNo
+  User.findOne({ regNo }).then(user => {
     // Check for user
     if (!user) {
-      errors.email = "email or password not correct";
+      errors.regNo = "Registratio nnumber or password not correct";
       return res.status(404).json(errors);
     }
 
@@ -101,8 +99,7 @@ router.post("/login", (req, res) => {
         // User Matched
         const payload = {
           id: user.id,
-          email: user.email,
-          name: user.name,
+          regNo: user.regNo,
           avatar: user.avatar,
           admin: user.admin
         }; // Create JWT Payload
@@ -115,7 +112,7 @@ router.post("/login", (req, res) => {
           });
         });
       } else {
-        errors.password = "email or password not correct";
+        errors.password = "Registration number or password not correct";
         return res.status(400).json(errors);
       }
     });
@@ -131,8 +128,7 @@ router.get(
   (req, res) => {
     res.json({
       id: req.user.id,
-      name: req.user.name,
-      email: req.user.email,
+      regNo: req.user.regNo,
       avatar: req.user.avatar
     });
   }
