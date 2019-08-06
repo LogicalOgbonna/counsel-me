@@ -4,11 +4,12 @@ import "bootstrap";
 import { connect } from "react-redux";
 
 import "./Header.css";
-import logo from "./images/s2.png";
+// import logo from "./images/s2.png";
 import { Link } from "react-router-dom";
 import { logout } from "../actions/auth";
 
 const Header = ({ isAuthenticated, user, logout, active }) => {
+  console.log(isAuthenticated);
   return (
     <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
       <div className="container">
@@ -44,16 +45,40 @@ const Header = ({ isAuthenticated, user, logout, active }) => {
                 Contact
               </Link>
             </li>
-            <li className={`nav-item ${active === "register" && "active"} `}>
-              <Link to="/register" className="nav-link">
-                Sign up
-              </Link>
-            </li>
-            <li className={`nav-item ${active === "login" && "active"} `}>
-              <Link to="/login" className="nav-link">
-                Sign in
-              </Link>
-            </li>
+            {!isAuthenticated && (
+              <React.Fragment>
+                <li
+                  className={`nav-item ${active === "register" && "active"} `}
+                >
+                  <Link to="/register" className="nav-link">
+                    Sign up
+                  </Link>
+                </li>
+                <li className={`nav-item ${active === "login" && "active"} `}>
+                  <Link to="/login" className="nav-link">
+                    Sign in
+                  </Link>
+                </li>
+              </React.Fragment>
+            )}
+            {isAuthenticated && (
+              <React.Fragment>
+                <li className={`nav-item ${active === "login" && "active"} `}>
+                  <Link to="/dashboard" className="nav-link btn btn-secondary">
+                    Dashboard
+                  </Link>
+                </li>
+                <li className={`nav-item ${active === "login" && "active"} `}>
+                  <button
+                    className="nav-link btn btn-secondary ml-2"
+                    onClick={() => logout()}
+                    type="submit"
+                  >
+                    LOGOUT
+                  </button>
+                </li>
+              </React.Fragment>
+            )}
           </ul>
         </div>
       </div>

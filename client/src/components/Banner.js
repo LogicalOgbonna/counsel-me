@@ -90,24 +90,7 @@ class Banner extends React.Component {
               <div className="col-lg-7 banner-text-w3pvt" />
               <div className="col-lg-5 col-md-8 px-lg-3 px-0">
                 <div className="banner-form-w3 ml-lg-5">
-                  {/* {!this.props.isAuthenticated ? (
-                    <div className="padding">
-                      <RegisterForm
-                        loading={this.state.loading}
-                        onSubmit={this.onSubmit}
-                        email={this.state.email}
-                        password={this.state.password}
-                        confirm_password={this.state.confirm_password}
-                        onChange={this.onChange}
-                        login={this.state.login}
-                        onLogin={this.onLogin}
-                        errors={this.state.errors}
-                        name={this.state.name}
-                      />
-                    </div>
-                  ) : (
-                    <div className=""></div>
-                  )} */}
+                  {/* Put something here */}
                 </div>
               </div>
             </div>

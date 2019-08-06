@@ -85,7 +85,7 @@ const Nav = ({ active, user, logout }) => {
             </ul>
           )}
 
-          {/* <ul className="navbar-nav ml-auto">
+          <ul className="navbar-nav ml-auto">
             <li className="nav-item dropdown mr-3">
               <a
                 href="#"
@@ -99,7 +99,7 @@ const Nav = ({ active, user, logout }) => {
                   alt="user"
                   title="You must have a Gravatar connected to your email to display your image "
                 />{" "}
-                {` Welcome ${user.name}`}
+                {` Welcome ${user.regNo}`}
               </a>
               <div className="dropdown-menu">
                 <Link to="/profile" className="dropdown-item">
@@ -119,7 +119,7 @@ const Nav = ({ active, user, logout }) => {
                 </Link>
               </div>
             </li>
-          </ul> */}
+          </ul>
         </div>
       </div>
     </nav>
