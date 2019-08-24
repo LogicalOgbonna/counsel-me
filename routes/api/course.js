@@ -44,242 +44,218 @@ router.post(
 // @access  Public
 router.post(
   "/career",
-  // passport.authenticate("jwt", { session: false }),
+  passport.authenticate("jwt", { session: false }),
   (req, res) => {
     if (!req.body.length) {
       return res.json({
         message: "You Did not pass any course"
       });
     }
-    const coursecodes = [];
-    req.body.map(course => coursecodes.push(course.name));
+    let AI = {
+      course: [
+        { code: "COS415", name: "System Modeling and Simulation" },
+        { code: "COS453", name: "Computer process control" },
+        { code: "COS412", name: "Computer Performance Evaluation" },
+        { code: "COS454", name: "Artificial Intelligence" },
+        { code: "COS458", name: "Expert System" }
+      ],
+      courses: [],
+      totalPoint: 0,
+      area: "Artificial Intelligence",
+      definition: "Something about it"
+    };
+    let ST = {
+      course: [
+        { code: "COS104", name: "Computing practice" },
+        { code: "COS201", name: "Computer Programming" },
+        { code: "COS251", name: "Assembly language programming" },
+        { code: "COS202", name: "	Computer Programming II" },
+        { code: "COS461", name: "Organization Of Programing Language" },
+        { code: "COS462", name: "Structured programming" },
+        { code: "COS414", name: "Operation Research II" },
+        { code: "COS464", name: "Concurrent Programming" }
+      ],
+      courses: [],
+      totalPoint: 0,
+      area: "Software theory",
+      definition: "Something about it"
+    };
+    let SE = {
+      course: [
+        { code: "COS301", name: "Introduction To Digital Design" },
+        { code: "COS303", name: "	Introduction To Microcomputer" },
+        { code: "COS341", name: "Computer Architecture I" },
+        { code: "COS342", name: "Computer Architecture II" },
+        { code: "COS372", name: " Laboratory for digital design" },
+        { code: "COS472", name: "Advance Digital Laboratory" }
+      ],
+      courses: [],
+      totalPoint: 0,
+      area: "Software theory",
+      definition: "Something about it"
+    };
+    let TCS = {
+      course: [
+        { code: "COS101", name: "Introduction to Computer Science" },
+        { code: "COS102", name: "introduction to computer system" },
+        { code: "COS331", name: "Compiler Construction I" },
+        { code: "COS432", name: "Compiler Construction II" },
+        { code: "COS333", name: "operating system I" },
+        { code: "COS315", name: "operation research I" },
+        { code: "COS316", name: "automata theory and formal language" },
+        { code: "COS334", name: "operating system II" },
+        { code: "COS413", name: "Queuing theory" },
+        { code: "COS431", name: "software design" },
+        { code: "COS457", name: "computer graphics" },
+        { code: "COS452", name: "computer center management" }
+      ],
+      courses: [],
+      totalPoint: 0,
+      area: "Theoretical computer science",
+      definition: "Something about it"
+    };
+    let DB = {
+      course: [
+        { code: "COS222", name: "Introduction To File Processing" },
+        { code: "COS321", name: "Database Design I" },
+        { code: "COS322", name: "Database Design II" },
+        { code: "COS335", name: "System Analysis And Design" }
+      ],
+      courses: [],
+      totalPoint: 0,
+      area: "Data Base",
+      definition: "Something about it"
+    };
+    let DC = {
+      course: [
+        { code: "COS313", name: "Switching Algebra and Discrete Structures I" },
+        {
+          code: "COS314",
+          name: "Switching Algebra and Discrete Structures II"
+        },
+        { code: "COS455", name: "Data Communication And Network I" },
+        { code: "COS456", name: "Data Communication And Network II" }
+      ],
+      courses: [],
+      totalPoint: 0,
+      area: "Data Communication and Network",
+      definition: "Something about it"
+    };
+    let AD = {
+      course: [
+        { code: "COS352", name: "Data Structure" },
+        { code: "COS311", name: "Numerical Method I" },
+        { code: "COS411", name: "Numerical Method II" },
+        { code: "COS451", name: "Algorithm" }
+      ],
+      courses: [],
+      totalPoint: 0,
+      area: "Algorithm Design",
+      definition: "Something about it"
+    };
+    req.body.map(course => {
+      if (
+        course.name === "COS415" ||
+        course.name === "COS453" ||
+        course.name === "COS412" ||
+        course.name === "COS454" ||
+        course.name === "COS458"
+      ) {
+        AI.courses.push(course);
+        AI.totalPoint += course.point;
+      }
+      if (
+        course.name === "COS104" ||
+        course.name === "COS201" ||
+        course.name === "COS251" ||
+        course.name === "COS202" ||
+        course.name === "COS461" ||
+        course.name === "COS462" ||
+        course.name === "COS414" ||
+        course.name === "COS464"
+      ) {
+        ST.courses.push(course);
+        ST.totalPoint += course.point;
+      }
+      if (
+        course.name === "COS301" ||
+        course.name === "COS303" ||
+        course.name === "COS341" ||
+        course.name === "COS342" ||
+        course.name === "COS372" ||
+        course.name === "COS472"
+      ) {
+        SE.courses.push(course);
+        SE.totalPoint += course.point;
+      }
+      if (
+        course.name === "COS101" ||
+        course.name === "COS102" ||
+        course.name === "COS331" ||
+        course.name === "COS432" ||
+        course.name === "COS333" ||
+        course.name === "COS315" ||
+        course.name === "COS316" ||
+        course.name === "COS334" ||
+        course.name === "COS413" ||
+        course.name === "COS431" ||
+        course.name === "COS457" ||
+        course.name === "COS452"
+      ) {
+        TCS.courses.push(course);
+        TCS.totalPoint += course.point;
+      }
+      if (
+        course.name === "COS222" ||
+        course.name === "COS321" ||
+        course.name === "COS322" ||
+        course.name === "COS335"
+      ) {
+        DB.courses.push(course);
+        DB.totalPoint += course.point;
+      }
+      if (
+        course.name === "COS313" ||
+        course.name === "COS314" ||
+        course.name === "COS455" ||
+        course.name === "COS456"
+      ) {
+        DC.courses.push(course);
+        DC.totalPoint += course.point;
+      }
+      if (
+        course.name === "COS352" ||
+        course.name === "COS311" ||
+        course.name === "COS411" ||
+        course.name === "COS451"
+      ) {
+        AD.courses.push(course);
+        AD.totalPoint += course.point;
+      }
+    });
+    AI.averagePoint =
+      AI.totalPoint / AI.courses.length ? AI.totalPoint / AI.courses.length : 0;
+    ST.averagePoint =
+      ST.totalPoint / ST.courses.length ? ST.totalPoint / ST.courses.length : 0;
+    SE.averagePoint =
+      SE.totalPoint / SE.courses.length ? SE.totalPoint / SE.courses.length : 0;
+    TCS.averagePoint =
+      TCS.totalPoint / TCS.courses.length
+        ? TCS.totalPoint / TCS.courses.length
+        : 0;
+    DB.averagePoint =
+      DB.totalPoint / DB.courses.length ? DB.totalPoint / DB.courses.length : 0;
+    DC.averagePoint =
+      DC.totalPoint / DC.courses.length ? DC.totalPoint / DC.courses.length : 0;
+    AD.averagePoint =
+      AD.totalPoint / AD.courses.length ? AD.totalPoint / AD.courses.length : 0;
 
-    if (
-      coursecodes.includes("COS101") &&
-      coursecodes.includes("COS454") &&
-      coursecodes.includes("COS458")
-    ) {
-      return res.json({
-        area: "Artificial Intelligence",
-        definition:
-          "study of developing a computer system that are able to perform human task that requires human intelligence.",
-        course: [
-          { name: "Introduction to Computer Science", code: "COS101" },
-          { name: "Artificial Intelligence", code: "COS454" },
-          { name: "Expert System", code: "COS458" }
-        ]
-      });
-    }
-
-    if (
-      coursecodes.includes("COS101") &&
-      coursecodes.includes("COS321") &&
-      coursecodes.includes("COS322") &&
-      coursecodes.includes("COS461") &&
-      coursecodes.includes("COS431") &&
-      coursecodes.includes("COS457")
-    ) {
-      return res.json({
-        area: "Software theory",
-        definition:
-          "This is the study of computer network technology & database technology. ",
-        course: [
-          { name: "Introduction to Computer Science", code: "COS101" },
-          { name: "database design I", code: "COS321" },
-          { name: "database design II", code: "COS322" },
-          { name: "organization of programing language", code: "COS461" },
-          { name: "software design", code: "COS431" },
-          { name: "computer graphics", code: "COS457" }
-        ]
-      });
-    }
-
-    if (
-      coursecodes.includes("COS101") &&
-      coursecodes.includes("COS102") &&
-      coursecodes.includes("COS201") &&
-      coursecodes.includes("COS202") &&
-      coursecodes.includes("COS341") &&
-      coursecodes.includes("COS321") &&
-      coursecodes.includes("COS322") &&
-      coursecodes.includes("COS352") &&
-      coursecodes.includes("COS342") &&
-      coursecodes.includes("COS451") &&
-      coursecodes.includes("COS472")
-    ) {
-      return res.json({
-        area: "Software engineering",
-        definition:
-          "This is the application of engineering methods in development of software in a systematic method.",
-        course: [
-          { name: "Introduction to Computer Science", code: "COS101" },
-          { name: "introduction to computer system", code: "COS102" },
-          { name: "computer programming I", code: "COS201" },
-          { name: "computer programming II", code: "COS202" },
-          { name: "computer architecture I", code: "COS341" },
-          { name: "computer architecture II", code: "COS342" },
-          { name: "database design I", code: "COS321" },
-          { name: "database design II", code: "COS322" },
-          { name: "data structure", code: "COS352" },
-          { name: "Algorithm", code: "COS451" },
-          { name: "Advance digital laboratory", code: "COS472" }
-        ]
-      });
-    }
-
-    if (
-      coursecodes.includes("COS101") &&
-      coursecodes.includes("COS321") &&
-      coursecodes.includes("COS322") &&
-      coursecodes.includes("COS461") &&
-      coursecodes.includes("COS431") &&
-      coursecodes.includes("COS457")
-    ) {
-      return res.json({
-        area: "Software theory",
-        definition:
-          "This is the study of computer network technology & database technology. ",
-        course: [
-          { name: "Introduction to Computer Science", code: "COS101" },
-          { name: "database design I", code: "COS321" },
-          { name: "database design II", code: "COS322" },
-          { name: "organization of programing language", code: "COS461" },
-          { name: "software design", code: "COS431" },
-          { name: "computer graphics", code: "COS457" }
-        ]
-      });
-    }
-
-    if (
-      coursecodes.includes("COS101") &&
-      coursecodes.includes("COS301") &&
-      coursecodes.includes("COS303") &&
-      coursecodes.includes("COS333") &&
-      coursecodes.includes("COS334") &&
-      coursecodes.includes("COS335") &&
-      coursecodes.includes("COS415") &&
-      coursecodes.includes("COS452") &&
-      coursecodes.includes("COS412")
-    ) {
-      return res.json({
-        area: "System Engineering",
-        definition:
-          "is an interdisciplinary field of engineering and management that focuses on how to design and manage systems",
-
-        course: [
-          { name: "Introduction to Computer Science", code: "COS101" },
-          { name: "introduction to digital design", code: "COS301" },
-          { name: "introduction to microcomputer", code: "COS303" },
-          { name: "operating system I", code: "COS333" },
-          { name: "operating system II", code: "COS334" },
-          { name: "system analysis and design", code: "COS335" },
-          { name: "system modeling and simulation", code: "COS415" },
-          { name: "computer center management", code: "COS425" },
-          { name: "computer performance evaluation", code: "COS412" }
-        ]
-      });
-    }
-
-    if (
-      coursecodes.includes("COS101") &&
-      coursecodes.includes("COS316") &&
-      coursecodes.includes("COS311") &&
-      coursecodes.includes("COS411")
-    ) {
-      return res.json({
-        area: "Computer and Network security",
-        definition:
-          "this is the study of set of rules and configuration design to protect the integrity and accessibility of computer network.",
-        course: [
-          { name: "Introduction to Computer Science", code: "COS101" },
-          { name: "automata theory and formal language", code: "COS316" },
-          { name: "numerical method I", code: "COS311" },
-          { name: "numerical method II", code: "COS411" }
-        ]
-      });
-    }
-
-    if (
-      coursecodes.includes("COS101") &&
-      coursecodes.includes("COS413") &&
-      coursecodes.includes("COS455") &&
-      coursecodes.includes("COS456") &&
-      coursecodes.includes("COS464")
-    ) {
-      return res.json({
-        area: "Mobile and internet computing",
-        definition:
-          " is the study of varieties of device that allow people to access data and information from wherever they are via a mobile device.",
-        course: [
-          { name: "Introduction to Computer Science", code: "COS101" },
-          { name: "Queuing theory", code: "COS413" },
-          { name: "data communication and Network I", code: "COS455" },
-          { name: "data communication and Network II", code: "COS456" },
-          { name: "concurrent programming", code: "COS464" }
-        ]
-      });
-    }
-
-    if (
-      coursecodes.includes("COS101") &&
-      coursecodes.includes("COS315") &&
-      coursecodes.includes("COS414") &&
-      coursecodes.includes("COS457")
-    ) {
-      return res.json({
-        area: "Real-world computing",
-        definition:
-          " is the study of tech that processes human information capacity such as pattern recognition and handling of incomplete info.",
-        course: [
-          { name: "Introduction to Computer Science", code: "COS101" },
-          { name: "operation research I", code: "COS315" },
-          { name: "operation research II", code: "COS414" },
-          { name: "computer graphics", code: "COS457" }
-        ]
-      });
-    }
-
-    if (
-      coursecodes.includes("COS101") &&
-      coursecodes.includes("COS413") &&
-      coursecodes.includes("COS455") &&
-      coursecodes.includes("COS456") &&
-      coursecodes.includes("COS464")
-    ) {
-      return res.json({
-        area: "Mobile and internet computing",
-        definition:
-          " is the study of varieties of device that allow people to access data and information from wherever they are via a mobile device.",
-        course: [
-          { name: "Introduction to Computer Science", code: "COS101" },
-          { name: "Queuing theory", code: "COS413" },
-          { name: "data communication and Network I", code: "COS455" },
-          { name: "data communication and Network II", code: "COS456" },
-          { name: "concurrent programming", code: "COS464" }
-        ]
-      });
-    }
-
-    if (
-      coursecodes.includes("COS101") &&
-      coursecodes.includes("COS222") &&
-      coursecodes.includes("COS452") &&
-      coursecodes.includes("COS311") &&
-      coursecodes.includes("COS411")
-    ) {
-      return res.json({
-        area: "theoretical computer science",
-        definition:
-          " This is a subset of computer science that focuses on mathematical topics as they relate to practical and modern day computational techniques",
-        course: [
-          { name: "Introduction to Computer Science", code: "COS101" },
-          { name: "introduction to file processing", code: "COS222" },
-          { name: "computer center management", code: "COS452" },
-          { name: "numerical method I", code: "COS311" },
-          { name: "numerical method II", code: "COS411" }
-        ]
-      });
-    }
+    const sortNumbers = (a, b) => {
+      return a.averagePoint - b.averagePoint;
+    };
+    const array = [AI, ST, SE, TCS, DB, DC, AD];
+    const advice = array.sort(sortNumbers);
+    res.json(advice[advice.length - 1]);
   }
 );
 module.exports = router;

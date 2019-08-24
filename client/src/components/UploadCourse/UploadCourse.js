@@ -51,7 +51,7 @@ class UploadCourse extends Component {
         <div className="container">
           <div className="row">
             {this.state.coursesAdded && (
-              <div className="col-md-6">
+              <div className="col-md-12 mt-5">
                 <div className="alert alert-success alert-dismissible">
                   <a
                     href="#"
@@ -69,49 +69,50 @@ class UploadCourse extends Component {
             {this.state.specializationAdded && <div className="col-md-6" />}
           </div>
           <div className="row">
+            {/* <div className="col-md-12 "> */}
+            {/* <div className="row"> */}
+            <div className="col-md-3" />
             <div className="col-md-6 ">
-              <div className="row">
-                <div className="col-md-8 offset-2">
-                  <form
-                    onSubmit={this.onSubmitCourse}
-                    style={{ marginTop: "10%", marginBottom: "10%" }}
-                    className=""
-                  >
-                    <h5 className="mb-3 text-center">Upload Course</h5>
-                    <div className="input-group mb-3">
-                      <input
-                        type="file"
-                        className="form-control"
-                        placeholder="Recipient's username"
-                        aria-label="Recipient's username"
-                        name="excel"
-                        id="excel"
-                        aria-describedby="basic-addon2"
-                        onChange={this.onChange}
-                      />
-                      <div className="input-group-append">
-                        <span className="input-group-text" id="basic-addon2">
-                          <button className="btn btn-primary">Upload</button>
-                        </span>
-                      </div>
-                    </div>
-                    <div className="form-style-w3ls">
-                      <button
-                        disabled={this.state.loading}
-                        type="submit"
-                        className="btn"
-                      >
-                        {this.state.loading ? "Loading..." : "Upload"}
-                      </button>
-                    </div>
-                  </form>
+              <form
+                onSubmit={this.onSubmitCourse}
+                style={{ marginTop: "10%", marginBottom: "10%" }}
+                className=""
+              >
+                <h5 className="mb-3 text-center">Upload Course</h5>
+                <div className="input-group mb-3">
+                  <input
+                    type="file"
+                    className="form-control"
+                    placeholder="Recipient's username"
+                    aria-label="Recipient's username"
+                    name="excel"
+                    id="excel"
+                    aria-describedby="basic-addon2"
+                    onChange={this.onChange}
+                  />
+                  <div className="input-group-append">
+                    <span className="input-group-text" id="basic-addon2">
+                      <button className="btn btn-primary">Upload</button>
+                    </span>
+                  </div>
                 </div>
-              </div>
+                <div className="form-style-w3ls">
+                  <button
+                    disabled={this.state.loading}
+                    type="submit"
+                    className="btn"
+                  >
+                    {this.state.loading ? "Loading..." : "Upload"}
+                  </button>
+                </div>
+              </form>
             </div>
-            <div className="col-md-6">
+            <div className="col-md-3" />
+            {/* </div> */}
+            {/* </div> */}
+            {/* <div className="col-md-6">
               <div className="col-md-8 offset-2">
                 <form
-                  // onSubmit={this.onSubmit}
                   style={{ marginTop: "10%", marginBottom: "10%" }}
                   className=""
                 >
@@ -185,13 +186,6 @@ class UploadCourse extends Component {
                       </div>
 
                       <div className="ml-auto">
-                        {/* <div className="col-sm-4 pl-auto" />
-                      <div className="col-sm-4 pl-auto" /> */}
-
-                        {/* <div
-                        style={{ float: "left" }}
-                        className="col-md-12 pl-auto"
-                      > */}
                         <button
                           type="button"
                           style={{
@@ -209,7 +203,6 @@ class UploadCourse extends Component {
                         >
                           <i className="fa fa-plus" />
                         </button>
-                        {/* </div> */}
                       </div>
                     </div>
                     <button
@@ -223,6 +216,7 @@ class UploadCourse extends Component {
                 </form>
               </div>
             </div>
+           */}
           </div>
         </div>
         <Footer isAuthenticated={true} />

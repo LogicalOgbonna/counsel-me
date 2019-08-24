@@ -31,18 +31,18 @@ const Header = ({ isAuthenticated, user, logout, active }) => {
               </Link>
             </li>
             <li className={`nav-item ${active === "about" && "active"} `}>
-              <Link to="/about" className="nav-link">
+              <Link to="/#about" className="nav-link">
                 About Us
               </Link>
             </li>
             <li className={`nav-item ${active === "services" && "active"} `}>
-              <Link to="/services" className="nav-link">
-                Services
+              <Link to="/#features" className="nav-link">
+                Features
               </Link>
             </li>
             <li className={`nav-item ${active === "contact" && "active"} `}>
-              <Link to="/contact" className="nav-link">
-                Contact
+              <Link to="/#contact" className="nav-link">
+                Contact Us
               </Link>
             </li>
             {!isAuthenticated && (

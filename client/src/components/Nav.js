@@ -79,7 +79,7 @@ const Nav = ({ active, user, logout }) => {
                   to="/career"
                   className={`nav-link ${active === "career" ? "active" : ""}`}
                 >
-                  Career Path
+                  Advice Me
                 </Link>
               </li>
             </ul>
@@ -102,13 +102,13 @@ const Nav = ({ active, user, logout }) => {
                 {` Welcome ${user.regNo}`}
               </a>
               <div className="dropdown-menu">
-                <Link to="/profile" className="dropdown-item">
+                {/* <Link to="/profile" className="dropdown-item">
                   <i className="fas fa-user-circle" /> Profile
                 </Link>
 
                 <Link to="/settings" className="dropdown-item">
                   <i className="fas fa-cog" /> Settings
-                </Link>
+                </Link> */}
 
                 <Link
                   onClick={() => logout()}

@@ -116,7 +116,7 @@ export function GenericTable({ data, name, type }) {
           </tr>
         </thead>
         <tbody>
-          {data.length ? (
+          {data && data.length ? (
             data.map((data, index) => {
               return (
                 <tr key={index}>
@@ -145,19 +145,19 @@ export function GenericTable({ data, name, type }) {
         <thead>
           <tr>
             <th scope="col">#</th>
-            <th scope="col">Name</th>
-            <th scope="col">Email</th>
+            {/* <th scope="col">Name</th> */}
+            <th scope="col">Reg No</th>
             <th scope="col">Role</th>
           </tr>
         </thead>
         <tbody>
-          {data.length ? (
+          {data && data.length ? (
             data.map((data, index) => {
               return (
                 <tr key={index}>
                   <th scope="row">{index + 1}</th>
-                  <td className="text-capitalize">{data.name}</td>
-                  <td className="">{data.email}</td>
+                  {/* <td className="text-capitalize">{data.name}</td> */}
+                  <td className="">{data.regNo}</td>
                   <td className="text-capitalize">
                     {data.admin ? "Admin" : "User"}
                   </td>
@@ -176,6 +176,7 @@ export function GenericTable({ data, name, type }) {
       </table>
     </React.Fragment>
   );
+
   switch (type) {
     case "courses":
       return coursesTable;
@@ -185,3 +186,53 @@ export function GenericTable({ data, name, type }) {
       return "";
   }
 }
+
+export const SpecializationTable = ({ name, data }) => (
+  <React.Fragment>
+    <h3 className="text-muted text-center">{name}</h3>
+    <table className="table table-bordered">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Name</th>
+          <th scope="col">Courses</th>
+          {/* <th scope="col">Role</th> */}
+        </tr>
+      </thead>
+      <tbody>
+        {data && data.length ? (
+          data.map((data, index) => {
+            return (
+              <tr key={index}>
+                <th scope="row">{index + 1}</th>
+                <td className="text-capitalize">{data.name}</td>
+                <td className="">
+                  {data &&
+                    data.courses.map(course => (
+                      <div key={course.name}>
+                        {" "}
+                        <p>
+                          {course.name}, ({course.code})
+                        </p>
+                        {/* <p>Code: {course.code}</p> */}
+                        {/* <br /> */}
+                      </div>
+                    ))}
+                </td>
+                {/* <td className="text-capitalize">
+                  {data.admin ? "Admin" : "User"}
+                </td> */}
+              </tr>
+            );
+          })
+        ) : (
+          <tr>
+            <th scope="row" />
+            <td>No Data</td>
+            <td>No Data</td>
+          </tr>
+        )}
+      </tbody>
+    </table>
+  </React.Fragment>
+);

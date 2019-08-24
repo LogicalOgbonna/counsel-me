@@ -39,15 +39,17 @@ class Career extends Component {
           ...subjects,
           {
             name: row[i][0].toUpperCase(),
-            grade: row[i][1].toUpperCase()
+            grade: row[i][1].toUpperCase(),
+            point: row[i][2]
           }
         ];
       }
-      subjects.filter(
-        subject =>
-          subject.grade.toUpperCase() <= "C" && passedSubjects.push(subject)
-      );
+      // subjects.filter(
+      //   subject =>
+      //     subject.grade.toUpperCase() <= "C" && passedSubjects.push(subject)
+      // );
       student.subjects = subjects;
+      passedSubjects = subjects;
       this.setState({ student, passedSubjects });
     });
   };
@@ -95,19 +97,20 @@ class Career extends Component {
                   <div className="slogan">Your B.Sc Result</div>
                   <h1> YOUR RESULT</h1>
                 </div>
-                <div className="col-md-6 mt-3">
+                <div className="col-md-2" />
+                <div className="col-md-8 mt-3">
                   <ResultTable
                     name="Your Result"
                     subjects={this.state.student.subjects}
                     withGrade={true}
                   />
                 </div>
-                <div className="col-md-6 mt-3">
-                  <ResultTable
+                <div className="col-md-2 mt-3">
+                  {/* <ResultTable
                     name="Passed Subjects (C is the least)"
                     subjects={this.state.passedSubjects}
                     withGrade={true}
-                  />
+                  /> */}
                 </div>
               </div>
               {/* Test RAISEC */}
@@ -155,9 +158,9 @@ class Career extends Component {
                     onChange={this.onChange}
                   />
                   <div className="input-group-append">
-                    <span className="input-group-text" id="basic-addon2">
+                    {/* <span className="input-group-text" id="basic-addon2">
                       <button className="btn btn-primary">Upload</button>
-                    </span>
+                    </span> */}
                   </div>
                 </div>
                 {this.state.errors && (
@@ -175,7 +178,7 @@ class Career extends Component {
                     className="btn"
                   >
                     {" "}
-                    Trace Your Path{" "}
+                    Advice Me{" "}
                   </button>
                 </div>
                 <h5 className="mb-3 text-center text-muted mt-1">

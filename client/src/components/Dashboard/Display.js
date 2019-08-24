@@ -1,8 +1,10 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import Card from "../ServiceCard";
+import { SpecializationTable } from "../../common/Table";
 
-export default function Display({ admin }) {
+export default function Display({ admin, specialization }) {
   return (
     <React.Fragment>
       <div className="dashboard" id="home">
@@ -21,9 +23,22 @@ export default function Display({ admin }) {
         </div>
       </div>
       {!admin ? (
-        <div className="row">
-          <div className="col-md-10 offset-1">
-            <Card dashboard={true} />
+        <div className="row mt-5">
+          <div className="col-md-1" />
+          <div className="col-md-7">
+            <SpecializationTable
+              data={specialization}
+              type="specialization"
+              name="Areas of Specialization"
+            />
+            {/* <Card dashboard={true} /> */}
+          </div>
+          <div className="col-md-4">
+            <div className="btn btn-primar">
+              <Link to="/career" style={{ color: "white" }}>
+                Take Advice
+              </Link>
+            </div>
           </div>
         </div>
       ) : (

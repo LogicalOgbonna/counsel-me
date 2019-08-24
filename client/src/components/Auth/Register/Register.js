@@ -21,7 +21,6 @@ class Register extends Component {
 
   componentWillReceiveProps(next) {
     if (next.errors) {
-      console.log(next.errors);
       const errors = {};
       if (next.errors.password) errors.password = next.errors.password;
       if (next.errors.regNo) errors.regNo = next.errors.regNo;

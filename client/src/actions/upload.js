@@ -4,7 +4,8 @@ import {
   COURSE_UPLOAD,
   UPLOAD_ERRRORS,
   ALL_USERS,
-  AREA_OF_SPECIALIZATION
+  AREA_OF_SPECIALIZATION,
+  SPECIALIZATION
 } from "./types";
 
 export const allCourses = course => ({
@@ -32,6 +33,10 @@ export const areaOfSpecialization = area => ({
   area
 });
 
+export const specializations = special => ({
+  type: SPECIALIZATION,
+  payload: special
+});
 export const viewCourses = () => dispatch => {
   axios
     .get("/api/course")
@@ -69,4 +74,14 @@ export const uploadGrade = data => dispatch => {
   axios.post("/api/course/career", data).then(res => {
     dispatch(areaOfSpecialization(res.data));
   });
+};
+
+export const getSpecialization = () => dispatch => {
+  axios
+    .get("/api/specialization")
+    .then(special => {
+      console.log(special.data);
+      dispatch(specializations(special.data));
+    })
+    .catch(err => dispatch(errors(err)));
 };
