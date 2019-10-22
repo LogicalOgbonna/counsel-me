@@ -3,7 +3,7 @@ import React from "react";
 export function ResultTable({ subjects, name, withGrade }) {
   return (
     <React.Fragment>
-      <h3 className="text-muted text-center"> {name}</h3>
+      <h3 className=" text-center"> {name}</h3>
       <table className="table table-bordered">
         <thead>
           {withGrade ? (
@@ -57,31 +57,61 @@ export function ResultTable({ subjects, name, withGrade }) {
 }
 
 export function WorkTable({ data, notRiasec, name }) {
+  console.log(data)
   return (
     <React.Fragment>
-      <h3 className="text-muted text-center">
+      <div className="row">
+        <div className="col-md-4">
+        <h3 className=" text-center">
         {" "}
+        <strong>
+        <span className="text-bold">Total Point: </span>
+        {data.totalPoint}</strong>
+      </h3>
+        </div>
+        <div className="col-md-4">
+        <h3 className=" text-center">
+        {" "}
+        <strong>
+        <span className="text-bold">Average Point: </span>
+        {data.averagePoint}</strong>
+      </h3>
+        </div>
+        <div className="col-md-4">
+        <h3 className=" text-center">
+        {" "}
+        <strong>
+        <span className="text-bold">Percentage: </span>
+        {data.averagePoint * 10}%</strong>
+      </h3>
+        </div>
+      </div>
+      
+      {/* </label> */}
+        <h3 className=" text-center mb-2 mt-2">
+        {" "}
+      <strong>
         <span className="text-bold">Area: </span>
         {data.area}
+      </strong>
       </h3>
-      {/* </label> */}
       <table className="table table-bordered">
         <thead>
           <tr>
             <th scope="col">#</th>
-            <th scope="col">Course</th>
             <th scope="col">Code</th>
+            <th scope="col">Grade</th>
             {/* <th scope="col">Definition</th> */}
           </tr>
         </thead>
         <tbody>
           {data.course &&
             data.course.length &&
-            data.course.map((res, index) => (
+            data.courses.map((res, index) => (
               <tr key={index}>
                 <th scope="row">{index + 1}</th>
-                <td className="text-capitalize">{res.name}</td>
                 <td className="text-capitalize">{res.code}</td>
+                <td className="text-capitalize">{res.grade}</td>
               </tr>
             ))}
           {/* <td>{data.definition}</td> */}
@@ -95,7 +125,7 @@ export function WorkTable({ data, notRiasec, name }) {
           // ) */}
         </tbody>
       </table>
-      <h3 className="text-muted text-center">
+      <h3 className=" text-center">
         <span className="text-bold">Definition: </span>
         {data.definition}
       </h3>
@@ -106,7 +136,7 @@ export function WorkTable({ data, notRiasec, name }) {
 export function GenericTable({ data, name, type }) {
   const coursesTable = (
     <React.Fragment>
-      <h3 className="text-muted text-center">{name}</h3>
+      <h3 className=" text-center">{name}</h3>
       <table className="table table-bordered">
         <thead>
           <tr>
@@ -140,7 +170,7 @@ export function GenericTable({ data, name, type }) {
 
   const userTable = (
     <React.Fragment>
-      <h3 className="text-muted text-center">{name}</h3>
+      <h3 className=" text-center">{name}</h3>
       <table className="table table-bordered">
         <thead>
           <tr>
@@ -189,7 +219,7 @@ export function GenericTable({ data, name, type }) {
 
 export const SpecializationTable = ({ name, data }) => (
   <React.Fragment>
-    <h3 className="text-muted text-center">{name}</h3>
+    <h3 className=" text-center">{name}</h3>
     <table className="table table-bordered">
       <thead>
         <tr>

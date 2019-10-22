@@ -9,7 +9,7 @@ import "./Login.css";
 
 class Login extends Component {
   state = {
-    regNo: "",
+    email: "",
     password: "",
     errors: {},
     loading: false
@@ -18,8 +18,8 @@ class Login extends Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.errors) {
       const errors = {};
-      if (nextProps.errors.regNo) errors.regNo = nextProps.errors.regNo;
-      if (nextProps.errors.password) errors.regNo = nextProps.errors.password;
+      if (nextProps.errors.email) errors.email = nextProps.errors.email;
+      if (nextProps.errors.password) errors.email = nextProps.errors.password;
       this.setState({ errors, loading: false });
     }
   }
@@ -29,11 +29,11 @@ class Login extends Component {
 
   validate = data => {
     const errors = {};
-    const regNoRegex = /[0-9]{4}[/]{1}[0-9]{6}/;
-    if (!regNoRegex.test(data.regNo))
-      errors.regNo = "Invalid Registration Number";
+    // const emailRegex = /[0-9]{4}[/]{1}[0-9]{6}/;
+    // if (!emailRegex.test(data.email))
+      // errors.email = "Invalid Registration Number";
     if (!data.password) errors.password = "Can't be blank";
-    // if (!validator.isregNo(data.regNo)) errors.regNo = "Invalid regNo address";
+    if (!validator.isEmail(data.email)) errors.email = "Invalid email address";
 
     return errors;
   };
@@ -58,19 +58,19 @@ class Login extends Component {
               <div className="col-md-4 ">
                 <form onSubmit={this.onSubmit}>
                   <div className="form-group">
-                    <label htmlFor="regNo">Registration Number</label>
+                    <label htmlFor="email">Registration Number</label>
                     <input
-                      type="regNo"
-                      name="regNo"
+                      type="email"
+                      name="email"
                       className="form-control"
-                      id="regNo"
+                      id="email"
                       aria-describedby="emailHelp"
-                      placeholder="Enter regNo"
+                      placeholder="Enter email"
                       onChange={this.onChange}
                     />
                     {this.state.errors && (
                       <small id="emailHelp" className="form-text text-danger">
-                        {this.state.errors.regNo}
+                        {this.state.errors.email}
                       </small>
                     )}
                   </div>

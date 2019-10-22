@@ -26,9 +26,9 @@ router.post("/register", (req, res) => {
     return res.status(400).json(errors);
   }
 
-  User.findOne({ regNo: req.body.regNo }).then(user => {
+  User.findOne({ email: req.body.email }).then(user => {
     if (user) {
-      errors.regNo = "User with " + req.body.regNo + " already exists";
+      errors.email = "User with " + req.body.email + " already exists";
       return res.status(400).json(errors);
     } else {
       const avatar = gravatar.url(req.body.regNo, {
@@ -36,12 +36,11 @@ router.post("/register", (req, res) => {
         r: "pg", // Rating
         d: "mm" // Default
       });
-      const admin = req.body.admin ? req.body.admin : false;
       const newUser = new User({
-        regNo: req.body.regNo,
+        email: req.body.email,
         avatar,
         password: req.body.password,
-        admin
+        who: req.body.who
       });
 
       bcrypt.genSalt(10, (err, salt) => {
@@ -53,9 +52,9 @@ router.post("/register", (req, res) => {
             .then(user => {
               const payload = {
                 id: user.id,
-                regNo: user.regNo,
+                email: user.email,
                 avatar: user.avatar,
-                admin
+                who: user.who
               };
               jwt.sign(payload, process.env.secretOrKey, (err, token) => {
                 res.json({
@@ -82,14 +81,14 @@ router.post("/login", (req, res) => {
     return res.status(400).json(errors);
   }
 
-  const regNo = req.body.regNo;
+  const email = req.body.email;
   const password = req.body.password;
 
-  // Find user by regNo
-  User.findOne({ regNo }).then(user => {
+  // Find user by email
+  User.findOne({ email }).then(user => {
     // Check for user
     if (!user) {
-      errors.regNo = "Registratio nnumber or password not correct";
+      errors.email = "Email  or password not correct";
       return res.status(404).json(errors);
     }
 
@@ -99,9 +98,9 @@ router.post("/login", (req, res) => {
         // User Matched
         const payload = {
           id: user.id,
-          regNo: user.regNo,
+          email: user.email,
           avatar: user.avatar,
-          admin: user.admin
+          who: user.who
         }; // Create JWT Payload
 
         // Sign Token
@@ -112,7 +111,7 @@ router.post("/login", (req, res) => {
           });
         });
       } else {
-        errors.password = "Registration number or password not correct";
+        errors.password = "Email or password not correct";
         return res.status(400).json(errors);
       }
     });
@@ -128,8 +127,9 @@ router.get(
   (req, res) => {
     res.json({
       id: req.user.id,
-      regNo: req.user.regNo,
-      avatar: req.user.avatar
+      email: req.user.email,
+      avatar: req.user.avatar,
+      who: req.user.who
     });
   }
 );

@@ -14,7 +14,7 @@ const Header = ({ isAuthenticated, user, logout, active }) => {
     <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
       <div className="container">
         <Link to="/" className="navbar-brand">
-          CENM
+          Counsel Me
         </Link>
         <button
           className="navbar-toggler"
@@ -51,12 +51,12 @@ const Header = ({ isAuthenticated, user, logout, active }) => {
                   className={`nav-item ${active === "register" && "active"} `}
                 >
                   <Link to="/register" className="nav-link">
-                    Sign up
+                    Course Adviser Login
                   </Link>
                 </li>
                 <li className={`nav-item ${active === "login" && "active"} `}>
                   <Link to="/login" className="nav-link">
-                    Sign in
+                    HOD Login
                   </Link>
                 </li>
               </React.Fragment>

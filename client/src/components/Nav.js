@@ -76,8 +76,8 @@ const Nav = ({ active, user, logout }) => {
 
               <li className="nav-item px-2">
                 <Link
-                  to="/career"
-                  className={`nav-link ${active === "career" ? "active" : ""}`}
+                  to="/dashboard"
+                  className={`nav-link ${active === "dashboard" ? "active" : ""}`}
                 >
                   Advice Me
                 </Link>
@@ -99,7 +99,7 @@ const Nav = ({ active, user, logout }) => {
                   alt="user"
                   title="You must have a Gravatar connected to your email to display your image "
                 />{" "}
-                {` Welcome ${user.regNo}`}
+                {` Welcome ${user.email}`}
               </a>
               <div className="dropdown-menu">
                 {/* <Link to="/profile" className="dropdown-item">

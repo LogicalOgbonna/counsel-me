@@ -8,11 +8,12 @@ import "./Register.css";
 
 class Register extends Component {
   state = {
-    regNo: "",
+    email: "",
     password: "",
     confirm_password: "",
     errors: {},
-    loading: false
+    loading: false,
+    who: ""
   };
 
   onChange = e => {
@@ -44,9 +45,9 @@ class Register extends Component {
 
   validate = data => {
     const errors = {};
-    const regNoRegex = /[0-9]{4}[/]{1}[0-9]{6}/;
-    if (!regNoRegex.test(data.regNo))
-      errors.regNo = "Invalid Registration Number";
+    // const regNoRegex = /[0-9]{4}[/]{1}[0-9]{6}/;
+    // if (!regNoRegex.test(data.regNo))
+    //   errors.regNo = "Invalid Registration Number";
     // if (!data.regNo) errors.regNo = "Can't be blank";
     if (!data.password) errors.password = "Can't be blank";
     if (!data.confirm_password) errors.confirm_password = "Can't be blank";
@@ -67,19 +68,19 @@ class Register extends Component {
             <div className="col-md-4 ">
               <form onSubmit={this.onSubmit}>
                 <div className="form-group">
-                  <label htmlFor="regNo">Register Number</label>
+                  <label htmlFor="email">Enter Email</label>
                   <input
-                    type="regNo"
-                    name="regNo"
+                    type="email"
+                    name="email"
                     className="form-control"
-                    id="regNo"
-                    aria-describedby="regNoHelp"
-                    placeholder="Enter regNo"
+                    id="email"
+                    aria-describedby="emailHelp"
+                    placeholder="Enter email"
                     onChange={this.onChange}
                   />
                   {this.state.errors && (
-                    <small id="regNoHelp" className="form-text text-danger">
-                      {this.state.errors.regNo}
+                    <small id="emailHelp" className="form-text text-danger">
+                      {this.state.errors.email}
                     </small>
                   )}
                 </div>
@@ -113,6 +114,23 @@ class Register extends Component {
                   {this.state.errors && (
                     <small id="emailHelp" className="form-text text-danger">
                       {this.state.errors.confirm_password}
+                    </small>
+                  )}
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="who">Who:</label>
+                  <input
+                    type="text"
+                    name="who"
+                    className="form-control"
+                    id="who"
+                    placeholder="Retype Password"
+                    onChange={this.onChange}
+                  />
+                  {this.state.errors && (
+                    <small id="emailHelp" className="form-text text-danger">
+                      {this.state.errors.who}
                     </small>
                   )}
                 </div>

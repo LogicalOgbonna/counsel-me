@@ -5,14 +5,14 @@ module.exports = {
   login: function(data) {
     const errors = {};
     data.password = data.password === undefined ? "" : data.password;
-    data.regNo = data.regNo === undefined ? "" : data.regNo;
+    data.email = data.email === undefined ? "" : data.email;
 
     // if (!Validator.isEmail(data.email)) {
     //   errors.email = "Email is invalid";
     // }
 
-    if (Validator.isEmpty(data.regNo)) {
-      errors.regNo = "Registration number field is required";
+    if (Validator.isEmpty(data.email)) {
+      errors.email = "Registration number field is required";
     }
 
     if (Validator.isEmpty(data.password)) {
@@ -27,27 +27,27 @@ module.exports = {
   register: function(data) {
     let errors = {};
 
-    data.regNo = data.regNo === undefined ? "" : data.regNo;
+    data.email = data.email === undefined ? "" : data.email;
     // data.email = data.email === undefined ? "" : data.email;
     data.password = data.password === undefined ? "" : data.password;
     data.confirm_password =
       data.confirm_password === undefined ? "" : data.confirm_password;
 
-    if (!Validator.isLength(data.regNo, { min: 9, max: 11 })) {
-      errors.regNo = "Registration Number must 10 digits";
-    }
+    // if (!Validator.isLength(data.email, { min: 9, max: 11 })) {
+    //   errors.email = "Registration Number must 10 digits";
+    // }
 
-    if (Validator.isEmpty(data.regNo)) {
-      errors.regNo = "Registration number field is required";
+    if (Validator.isEmpty(data.email)) {
+      errors.email = "Registration number field is required";
     }
 
     // if (Validator.isEmpty(data.email)) {
     //   errors.email = "Email field is required";
     // }
 
-    // if (!Validator.isEmail(data.email)) {
-    //   errors.email = "Email is invalid";
-    // }
+    if (!Validator.isEmail(data.email)) {
+      errors.email = "Email is invalid";
+    }
 
     if (Validator.isEmpty(data.password)) {
       errors.password = "Password field is required";

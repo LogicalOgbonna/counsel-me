@@ -4,10 +4,21 @@ import {
   UPLOAD_ERRRORS,
   ALL_USERS,
   AREA_OF_SPECIALIZATION,
-  SPECIALIZATION
+  SPECIALIZATION,
+  ADD_STUDENT,
+  ADVICE_STUDENT,
+  ADVICE_ERROR
 } from "../actions/types";
 
-const uploads = (state = {}, action = {}) => {
+const iniitalState = {
+  course: [],
+  courses: [],
+  error: {},
+  student: {},
+  advice: {},
+  adviceError: ""
+};
+const uploads = (state = iniitalState, action = {}) => {
   switch (action.type) {
     case VIEW_COURSE:
       return {
@@ -39,6 +50,21 @@ const uploads = (state = {}, action = {}) => {
         ...state,
         specialization: action.payload
       };
+    case ADD_STUDENT:
+      return {
+        ...state,
+        student: action.payload
+      };
+    case ADVICE_STUDENT:
+      return {
+        ...state,
+        advice: action.payload
+      }
+    case ADVICE_ERROR: 
+    return {
+      ...state,
+      adviceError: action.payload
+    }
     default:
       return state;
   }

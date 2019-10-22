@@ -10,6 +10,7 @@ import UserRoute from "./routes/UserRoute";
 import ViewCourses from "./components/ViewCourses/ViewCourses";
 import UploadCourse from "./components/UploadCourse/UploadCourse";
 import ViewUsers from "./components/ViewUsers/ViewUsers";
+import Advice from "./components/Advice/Advice";
 import { Login, Register } from "./components/Auth/index";
 
 class App extends Component {
@@ -57,6 +58,13 @@ class App extends Component {
           exact
           name="Upload Course"
           component={UploadCourse}
+          isAuthenticated={isAuthenticated}
+        />
+        <UserRoute
+          path="/advice"
+          exact
+          name="Advice"
+          component={Advice}
           isAuthenticated={isAuthenticated}
         />
       </Switch>

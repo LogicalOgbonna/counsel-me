@@ -5,8 +5,12 @@ import {
   UPLOAD_ERRRORS,
   ALL_USERS,
   AREA_OF_SPECIALIZATION,
-  SPECIALIZATION
+  SPECIALIZATION,
+  ADD_STUDENT,
+  ADVICE_STUDENT,
+  ADVICE_ERROR
 } from "./types";
+import history from "../utils/history";
 
 export const allCourses = course => ({
   type: VIEW_COURSE,
@@ -84,4 +88,37 @@ export const getSpecialization = () => dispatch => {
       dispatch(specializations(special.data));
     })
     .catch(err => dispatch(errors(err)));
+};
+
+export const addStudent = data => dispatch => {
+  axios.post("/api/course/add", data).then(res => {
+    dispatch({
+      type: ADD_STUDENT,
+      payload: res.data
+    });
+  });
+};
+
+export const search = data => dispatch => {
+  axios
+    .post("/api/course/advice", { data })
+    .then(res => {
+      console.log(res.data);
+      dispatch({
+        type: ADVICE_STUDENT,
+        payload: res.data
+      });
+
+      setTimeout(() => {
+        history.push("/advice");
+      }, 1000);
+    })
+    .catch(err => {
+      if (err.response.status === 400) {
+        dispatch({
+          type: ADVICE_ERROR,
+          payload: err.response.data
+        });
+      }
+    });
 };
