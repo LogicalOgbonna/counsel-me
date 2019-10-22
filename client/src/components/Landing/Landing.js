@@ -56,10 +56,10 @@ const Landing = ({ isAuthenticated }) => {
                 <a href="#features">Features</a>
               </li>
               <li>
-                <Link to="/login">HOD Login</Link>
+                <Link to="/login"> Login</Link>
               </li>
               <li>
-                <Link to="/register">Course Adviser Login</Link>
+                {/* <Link to="/register">Course Adviser Login</Link> */}
               </li>
               {/* <li class="menu-has-children">
                 <a href="">Drop Down</a>

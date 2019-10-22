@@ -47,16 +47,16 @@ const Header = ({ isAuthenticated, user, logout, active }) => {
             </li>
             {!isAuthenticated && (
               <React.Fragment>
-                <li
+                {/* <li
                   className={`nav-item ${active === "register" && "active"} `}
                 >
                   <Link to="/register" className="nav-link">
                     Course Adviser Login
                   </Link>
-                </li>
+                </li> */}
                 <li className={`nav-item ${active === "login" && "active"} `}>
                   <Link to="/login" className="nav-link">
-                    HOD Login
+                    Login
                   </Link>
                 </li>
               </React.Fragment>
